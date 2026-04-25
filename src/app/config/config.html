@@ -1,0 +1,33 @@
+<button
+  (click)="getJobConfig()"
+  class="form-btn"
+>
+  Отправили JSON
+</button>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  @if (formInfo) {
+    <h2>{{ formInfo.title }}</h2>
+
+    <div style="display: grid; grid-gap: 10px">
+      @for (field of formInfo.fields; track field.id) {
+        <label>
+          {{ field.label }}
+          <input
+            [placeholder]="field.placeholder"
+            [formControlName]="field.id"
+            [type]="field.type"
+          />
+        </label>
+      }
+    </div>
+
+    <button
+      class="form-btn"
+      style="margin-top: 10px"
+      type="submit"
+    >
+      Отправить
+    </button>
+  }
+</form>
